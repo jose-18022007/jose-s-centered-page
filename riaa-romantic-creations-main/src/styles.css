@@ -1,0 +1,411 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   RIAA CANDLES & CHOCOLATES — DESIGN SYSTEM
+   Handcrafted with Love. Gifted with Grace.
+   ============================================================ */
+
+@theme inline {
+  /* Backgrounds */
+  --color-bg-primary: #e7f8ff;
+  --color-bg-secondary: #fdf6f9;
+  --color-bg-dark: #2d1f26;
+
+  /* Rose palette */
+  --color-rose-primary: #e2a5b4;
+  --color-rose-deep: #c47a8a;
+  --color-rose-blush: #f7dde5;
+
+  /* Gold palette */
+  --color-gold: #d4a853;
+  --color-gold-light: #f0d898;
+
+  /* Text */
+  --color-text-heading: #2d1f26;
+  --color-text-body: #6b4c57;
+  --color-text-muted: #9a7a84;
+  --color-text-light: #fdf6f9;
+
+  /* Shadcn token aliases (kept for compatibility) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Fonts */
+  --font-cormorant: "Cormorant Garamond", serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-dmsans: "DM Sans", sans-serif;
+  --font-italiana: "Italiana", serif;
+  --font-vibes: "Great Vibes", cursive;
+
+  /* Radius */
+  --radius-xs: 8px;
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 32px;
+  --radius-xl: 48px;
+  --radius-2xl: 64px;
+  --radius-full: 9999px;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #e7f8ff;
+  --foreground: #2d1f26;
+  --card: #ffffff;
+  --card-foreground: #2d1f26;
+  --popover: #ffffff;
+  --popover-foreground: #2d1f26;
+  --primary: #e2a5b4;
+  --primary-foreground: #ffffff;
+  --secondary: #fdf6f9;
+  --secondary-foreground: #2d1f26;
+  --muted: #f7dde5;
+  --muted-foreground: #6b4c57;
+  --accent: #d4a853;
+  --accent-foreground: #2d1f26;
+  --destructive: #e54848;
+  --destructive-foreground: #ffffff;
+  --border: rgba(226, 165, 180, 0.25);
+  --input: rgba(226, 165, 180, 0.25);
+  --ring: #e2a5b4;
+
+  /* Gradients */
+  --gradient-hero: radial-gradient(ellipse at 30% 50%, #fdf6f9 0%, #e7f8ff 45%, #ede8f5 75%, #e7f8ff 100%);
+  --gradient-rose: linear-gradient(135deg, #e2a5b4 0%, #c47a8a 100%);
+  --gradient-gold: linear-gradient(135deg, #d4a853 0%, #f0d898 50%, #d4a853 100%);
+  --gradient-section-alt: linear-gradient(180deg, #fdf6f9 0%, #e7f8ff 100%);
+  --gradient-dark-section: linear-gradient(135deg, #2d1f26 0%, #4a2d38 100%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-body);
+    font-family: var(--font-dmsans);
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-cormorant);
+    color: var(--color-text-heading);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+@utility font-display {
+  font-family: var(--font-cormorant);
+  font-size: clamp(56px, 9vw, 108px);
+  letter-spacing: -2px;
+  line-height: 0.95;
+}
+@utility font-hero {
+  font-family: var(--font-cormorant);
+  font-size: clamp(42px, 6vw, 80px);
+  letter-spacing: -1px;
+  line-height: 1.05;
+}
+@utility font-title {
+  font-family: var(--font-cormorant);
+  font-size: clamp(32px, 4.5vw, 58px);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+@utility font-subtitle {
+  font-family: var(--font-playfair);
+  font-size: clamp(20px, 2.8vw, 32px);
+  line-height: 1.3;
+}
+@utility font-body-lg {
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.85;
+}
+@utility font-label {
+  font-family: var(--font-italiana);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3.5px;
+}
+@utility font-script {
+  font-family: var(--font-vibes);
+}
+
+/* Gradient text */
+@utility text-gradient-rose {
+  background: var(--gradient-rose);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+@utility text-gradient-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================================
+   NEUMORPHISM
+   ============================================================ */
+@utility neu-raised {
+  background: #e7f8ff;
+  box-shadow: 5px 5px 12px rgba(200,216,224,0.65), -4px -4px 10px rgba(255,255,255,0.50);
+}
+@utility neu-raised-sm {
+  background: #e7f8ff;
+  box-shadow: 3px 3px 8px rgba(200,216,224,0.5), -2px -2px 6px rgba(255,255,255,0.45);
+}
+@utility neu-pressed {
+  background: #e7f8ff;
+  box-shadow: inset 4px 4px 10px rgba(200,216,224,0.6), inset -3px -3px 8px rgba(255,255,255,0.50);
+}
+@utility neu-raised-blush {
+  background: #fdf6f9;
+  box-shadow: 5px 5px 12px rgba(232,213,220,0.65), -4px -4px 10px rgba(255,255,255,0.50);
+}
+@utility neu-raised-blush-sm {
+  background: #fdf6f9;
+  box-shadow: 3px 3px 8px rgba(232,213,220,0.5), -2px -2px 6px rgba(255,255,255,0.45);
+}
+@utility neu-pressed-blush {
+  background: #fdf6f9;
+  box-shadow: inset 4px 4px 10px rgba(232,213,220,0.6), inset -3px -3px 8px rgba(255,255,255,0.50);
+}
+@utility neu-dark {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4), -3px -3px 8px rgba(255, 255, 255, 0.04);
+}
+
+/* ============================================================
+   GLASSMORPHISM
+   ============================================================ */
+@utility glass {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+@utility glass-strong {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+@utility glass-dark {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(226, 165, 180, 0.22);
+}
+@utility glass-navbar {
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 24px rgba(196, 122, 138, 0.18),
+              0 1px 3px rgba(196, 122, 138, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================================
+   SKEUOMORPHISM — multi-layer shadows
+   ============================================================ */
+@utility skeu-card {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 4px 8px rgba(196, 122, 138, 0.10),
+    0 12px 28px rgba(196, 122, 138, 0.10),
+    0 24px 56px rgba(196, 122, 138, 0.06),
+    0 48px 80px rgba(196, 122, 138, 0.04);
+}
+@utility skeu-soft {
+  box-shadow:
+    0 2px 4px rgba(196, 122, 138, 0.08),
+    0 8px 24px rgba(196, 122, 138, 0.10);
+}
+
+/* Gradients as utilities */
+@utility bg-gradient-rose {
+  background: var(--gradient-rose);
+}
+@utility bg-gradient-gold {
+  background: var(--gradient-gold);
+}
+@utility bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+@utility bg-gradient-dark-section {
+  background: var(--gradient-dark-section);
+}
+@utility bg-gradient-section-alt {
+  background: var(--gradient-section-alt);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.05); }
+  66% { transform: translate(-15px, 20px) scale(0.95); }
+}
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(0.96); }
+}
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes underline-draw {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@utility animate-float-orb { animation: float-orb 12s ease-in-out infinite; }
+@utility animate-gentle-float { animation: gentle-float 6s ease-in-out infinite; }
+@utility animate-flicker { animation: flicker 2.2s ease-in-out infinite; }
+@utility animate-slow-spin { animation: slow-spin 60s linear infinite; }
+@utility animate-marquee { animation: marquee 30s linear infinite; }
+@utility animate-pulse-ring { animation: pulse-ring 2s cubic-bezier(0.45, 0, 0.2, 1) infinite; }
+@utility animate-rise-in { animation: rise-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) both; }
+@utility animate-fade-in { animation: fade-in 0.6s ease-out both; }
+
+/* Ambient orb */
+@utility orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hero underline (hand-drawn) */
+@utility hero-underline {
+  display: block;
+  height: 10px;
+  width: 100%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'><path d='M2 6 Q 50 0 100 5 T 198 4' fill='none' stroke='%23c47a8a' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation: underline-draw 1s ease-out 0.8s both;
+}
+
+/* Shimmer overlay element */
+@utility shimmer-overlay {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+  }
+  &:hover::after {
+    transform: translateX(100%);
+  }
+}
+
+/* Hide scrollbar for filter rows */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============================================================
+   MOUNTAIN BACKGROUND (Coonoor hills)
+   ============================================================ */
+@utility mountain-bg {
+  position: relative;
+  isolation: isolate;
+}
+.mountain-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=70");
+  background-size: cover;
+  background-position: center 70%;
+  opacity: 0.55;
+}
+.mountain-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to bottom,
+      #e7f8ff 0%,
+      rgba(231,248,255,0.92) 20%,
+      rgba(231,248,255,0.7) 45%,
+      rgba(231,248,255,0.5) 65%,
+      rgba(231,248,255,0.3) 100%),
+    linear-gradient(to right,
+      #e7f8ff 0%,
+      rgba(231,248,255,0.1) 15%,
+      rgba(231,248,255,0.1) 85%,
+      #e7f8ff 100%);
+}
