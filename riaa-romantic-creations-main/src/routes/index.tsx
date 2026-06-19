@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   MessageCircle, Grid3x3, Shield, Leaf, Flame, HandHeart,
   Award, Palette, BadgeIndianRupee, Users, ArrowRight, ArrowUpRight, Plus,
-  Heart, ChevronLeft, ChevronRight, Instagram, Truck, Package,
+  Heart, ChevronLeft, ChevronRight, ChevronDown, Instagram, Truck, Package,
   Building2, BadgeCheck, ZoomIn, MessageSquare, Sparkles, Star,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -649,6 +649,7 @@ function ProductCard({ p }: { p: (typeof products)[number] }) {
 function OurStory() {
   return (
     <section className="mountain-bg relative overflow-hidden px-6 py-24 sm:px-10 sm:py-32">
+      <div className="mist-layer" aria-hidden />
       {/* warm rose orb to balance cool mountains */}
       <div
         aria-hidden
