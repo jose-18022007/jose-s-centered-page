@@ -46,7 +46,16 @@ function HomePage() {
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
+    <>
+      <MobileHero />
+      <DesktopHero />
+    </>
+  );
+}
+
+function DesktopHero() {
+  return (
+    <section className="hero-bokeh-bg relative isolate hidden min-h-[100svh] items-center overflow-hidden md:flex" style={{ background: "var(--gradient-hero)" }}>
       <AmbientOrbs />
       <div className="relative z-10 mx-auto grid w-full max-w-[1280px] gap-10 px-6 py-28 sm:px-10 md:py-32 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-40">
         {/* Left */}
@@ -126,6 +135,208 @@ function Hero() {
     </section>
   );
 }
+
+function MobileHero() {
+  const tags = ["Weddings", "Birthdays", "Baby Showers", "Corporate"];
+  const rise = (delay: number) => ({
+    animation: "rise-in 0.9s cubic-bezier(0.16,1,0.3,1) both",
+    animationDelay: `${delay}ms`,
+  });
+  return (
+    <section
+      className="mobile-hero-bg relative flex flex-col justify-end overflow-hidden px-6 pb-[60px] md:hidden"
+      style={{ height: "100svh" }}
+    >
+      {/* Rose orb top-right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 top-0 z-0 h-[200px] w-[200px] rounded-full"
+        style={{ background: "rgba(226,165,180,0.20)", filter: "blur(60px)" }}
+      />
+
+      {/* Top brand pill */}
+      <div
+        className="absolute left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 px-[18px] py-1.5 backdrop-blur-md"
+        style={{ background: "rgba(255,255,255,0.10)", top: "100px" }}
+      >
+        <Flame size={12} color="#e2a5b4" />
+        <span
+          style={{
+            fontFamily: "var(--font-dmsans)",
+            fontWeight: 300,
+            fontSize: 12,
+            letterSpacing: "1.5px",
+            color: "rgba(255,255,255,0.85)",
+          }}
+        >
+          Riaa Candles &amp; Chocolates
+        </span>
+      </div>
+
+      {/* Main content stack */}
+      <div className="relative z-10 flex flex-col">
+        {/* Occasion chips */}
+        <div className="no-scrollbar -mx-6 overflow-x-auto px-6" style={rise(0)}>
+          <div className="flex gap-2 pb-1">
+            {tags.map((t) => (
+              <span
+                key={t}
+                className="shrink-0 rounded-full border px-[14px] py-[5px]"
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                  borderColor: "rgba(226,165,180,0.35)",
+                  fontFamily: "var(--font-dmsans)",
+                  fontWeight: 300,
+                  fontSize: 11,
+                  color: "rgba(255,255,255,0.8)",
+                }}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Headline */}
+        <h1
+          className="mt-5"
+          style={{
+            ...rise(150),
+            fontFamily: "var(--font-cormorant)",
+            fontWeight: 300,
+            fontSize: 52,
+            lineHeight: 1.0,
+            letterSpacing: "-1px",
+            color: "white",
+          }}
+        >
+          <span className="block">Handcrafted</span>
+          <span className="block">Candles &amp;</span>
+          <span
+            className="block"
+            style={{
+              background: "var(--gradient-rose)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontWeight: 600,
+            }}
+          >
+            Chocolates
+          </span>
+          <svg
+            viewBox="0 0 200 8"
+            preserveAspectRatio="none"
+            className="mt-2 block h-2 w-[70%]"
+            style={{ animation: "underline-grow 1.2s ease-out 700ms both" }}
+          >
+            <path
+              d="M2 5 Q 50 1, 100 4 T 198 3"
+              stroke="#e2a5b4"
+              strokeWidth="1.5"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </svg>
+        </h1>
+
+        {/* Subtext */}
+        <p
+          className="mt-3"
+          style={{
+            ...rise(300),
+            fontFamily: "var(--font-dmsans)",
+            fontWeight: 300,
+            fontSize: 15,
+            lineHeight: 1.75,
+            color: "rgba(255,255,255,0.72)",
+          }}
+        >
+          Customized gifting for every special occasion — made with pure love in Coonoor.
+        </p>
+
+        {/* CTAs */}
+        <div className="mt-6 flex flex-col gap-3" style={rise(450)}>
+          <Link
+            to="/collections"
+            className="shimmer-overlay flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 text-white"
+            style={{
+              background: "var(--gradient-rose)",
+              boxShadow: "0 8px 28px rgba(196,122,138,0.50)",
+              fontFamily: "var(--font-dmsans)",
+              fontWeight: 500,
+              fontSize: 15,
+            }}
+          >
+            <Grid3x3 size={16} color="white" />
+            Explore Collections
+          </Link>
+          <a
+            href={wa()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-full border px-8 py-4 text-white backdrop-blur-md"
+            style={{
+              background: "rgba(255,255,255,0.12)",
+              borderColor: "rgba(255,255,255,0.30)",
+              fontFamily: "var(--font-dmsans)",
+              fontWeight: 400,
+              fontSize: 15,
+            }}
+          >
+            <MessageCircle size={16} color="#e2a5b4" />
+            WhatsApp Us
+          </a>
+        </div>
+
+        {/* Trust strip */}
+        <div className="mt-5 flex items-center gap-4" style={rise(600)}>
+          <div
+            className="flex items-center gap-1.5"
+            style={{
+              fontFamily: "var(--font-dmsans)",
+              fontWeight: 300,
+              fontSize: 12,
+              color: "rgba(255,255,255,0.7)",
+            }}
+          >
+            <Shield size={12} color="#e2a5b4" /> 100% Handmade
+          </div>
+          <span className="h-1 w-1 rounded-full" style={{ background: "#e2a5b4" }} />
+          <div
+            className="flex items-center gap-1.5"
+            style={{
+              fontFamily: "var(--font-dmsans)",
+              fontWeight: 300,
+              fontSize: 12,
+              color: "rgba(255,255,255,0.7)",
+            }}
+          >
+            <Leaf size={12} color="#e2a5b4" /> Pure Soy Wax
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="animate-scroll-bounce absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1">
+        <span
+          style={{
+            fontFamily: "var(--font-dmsans)",
+            fontWeight: 300,
+            fontSize: 10,
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.4)",
+          }}
+        >
+          Scroll
+        </span>
+        <ChevronDown size={16} color="rgba(255,255,255,0.5)" />
+      </div>
+    </section>
+  );
+}
+
 
 /* ---------------- BRAND HIGHLIGHTS BAR ---------------- */
 function BrandHighlightsBar() {
