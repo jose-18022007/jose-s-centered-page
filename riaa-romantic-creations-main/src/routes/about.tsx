@@ -23,7 +23,8 @@ function AboutPage() {
       <PageHero label="Our Story" title={<>Made with Hands. <span className="text-gradient-rose italic">Poured with Heart.</span></>} subtitle="What began as a small, quiet passion in the hills of Coonoor has grown into a boutique gifting house — but our heart is still the same. Handmade. Personal. Made for moments worth remembering." />
 
       {/* Story body */}
-      <section className="mountain-bg relative overflow-hidden px-6 py-20 sm:px-10 sm:py-28">
+      <section className="mountain-bg mountain-bg-tall relative overflow-hidden px-6 py-20 sm:px-10 sm:py-28">
+        <div className="mist-layer" aria-hidden />
         <div
           aria-hidden
           className="pointer-events-none absolute left-[-100px] top-1/2 z-0 h-[360px] w-[360px] -translate-y-1/2 rounded-full"
