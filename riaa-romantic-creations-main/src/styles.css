@@ -375,7 +375,7 @@
 }
 
 /* ============================================================
-   MOUNTAIN BACKGROUND (Coonoor hills)
+   MOUNTAIN BACKGROUND (Coonoor hills) — atmospheric & painterly
    ============================================================ */
 @utility mountain-bg {
   position: relative;
@@ -385,27 +385,116 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -2;
-  background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=70");
+  z-index: -3;
+  background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=80");
   background-size: cover;
-  background-position: center 70%;
-  opacity: 0.55;
+  background-position: center 60%;
+  background-attachment: fixed;
+  filter: saturate(0.7) brightness(0.85) contrast(1.1) blur(1.5px);
+}
+@media (max-width: 768px) {
+  .mountain-bg::before {
+    background-attachment: scroll;
+  }
 }
 .mountain-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   background:
     linear-gradient(to bottom,
       #e7f8ff 0%,
-      rgba(231,248,255,0.92) 20%,
-      rgba(231,248,255,0.7) 45%,
-      rgba(231,248,255,0.5) 65%,
-      rgba(231,248,255,0.3) 100%),
+      rgba(231,248,255,0.88) 15%,
+      rgba(231,248,255,0.60) 35%,
+      rgba(231,248,255,0.35) 55%,
+      rgba(231,248,255,0.20) 75%,
+      rgba(231,248,255,0.10) 100%),
     linear-gradient(to right,
       #e7f8ff 0%,
-      rgba(231,248,255,0.1) 15%,
-      rgba(231,248,255,0.1) 85%,
-      #e7f8ff 100%);
+      transparent 20%,
+      transparent 80%,
+      #e7f8ff 100%),
+    rgba(231,248,255,0.45);
 }
+.mountain-bg > .mist-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  height: 120px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(255,255,255,0.12) 20%,
+    rgba(231,248,255,0.18) 50%,
+    rgba(255,255,255,0.12) 80%,
+    transparent 100%);
+  filter: blur(20px);
+  animation: mist-drift 12s ease-in-out infinite;
+}
+@keyframes mist-drift {
+  0%, 100% { opacity: 0.6; transform: translateX(-2%); }
+  50% { opacity: 1; transform: translateX(2%); }
+}
+
+/* About page: stronger mountains for taller section */
+.mountain-bg.mountain-bg-tall::before {
+  background-position: center 50%;
+  filter: saturate(0.75) brightness(0.88) contrast(1.12) blur(1.2px);
+}
+.mountain-bg.mountain-bg-tall::after {
+  opacity: 0.9;
+}
+
+/* ============================================================
+   MOBILE HERO — cinematic full-bleed background
+   ============================================================ */
+@utility mobile-hero-bg {
+  position: relative;
+  isolation: isolate;
+  background-image:
+    linear-gradient(to bottom,
+      rgba(226,165,180,0.15) 0%,
+      transparent 40%),
+    linear-gradient(to top,
+      rgba(45,31,38,0.96) 0%,
+      rgba(45,31,38,0.80) 30%,
+      rgba(45,31,38,0.50) 60%,
+      rgba(45,31,38,0.15) 100%),
+    url("https://images.unsplash.com/photo-1602874801007-aa3c98c0d20c?auto=format&fit=crop&w=1200&q=80");
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-attachment: scroll;
+}
+
+/* ============================================================
+   DESKTOP HERO — subtle bokeh texture under gradient
+   ============================================================ */
+@utility hero-bokeh-bg {
+  position: relative;
+  isolation: isolate;
+}
+.hero-bokeh-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1800&q=70");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Scroll bounce indicator */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.animate-scroll-bounce { animation: scroll-bounce 2s ease-in-out infinite; }
+
+/* Hide scrollbars on horizontal chip rows */
+.no-scrollbar { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
